@@ -151,12 +151,7 @@ public class OrangehrmEmployee {
 	}
 
 	
-	@Test(priority = 4, enabled = true)
-	public void applyLeave() {
-		
-		
-		
-	}
+
 	
 	
 	@AfterClass
