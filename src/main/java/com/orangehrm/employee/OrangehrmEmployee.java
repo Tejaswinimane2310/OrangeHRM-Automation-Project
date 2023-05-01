@@ -151,7 +151,28 @@ public class OrangehrmEmployee {
 	}
 
 	
+	@Test(priority = 4, enabled = true)
+	public void applyLeave() throws InterruptedException {
+		
+		driver.findElement(By.xpath("//*[@id=\"widget.id\"]/span/span/quick-access-widget/div/div/div[2]/span/div/span[2]/span[3]/div[1]/span/span/img")).click();
+		
+		driver.findElement(By.id("leave.assign_fromDate")).sendKeys("Mon, 05 May 2023");
+		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		
+		jse.executeScript("window.scrollBy(0, 500)");
+		
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//*[@id=\"mount-vue-app\"]/div/div[2]/div/div[2]/form/div[13]/button/div")).click();
+		
+		driver.findElement(By.xpath("//*[@id=\"mount-vue-app\"]/div/div[2]/div/div[2]/form/div[13]/button/div")).click();
 
+		
+		Assert.assertEquals(driver.findElement(By.xpath("//span[text()=\"Pending Approval\"]")).getText(), "Pending Approval");
+		
+		Thread.sleep(10000);
+	}
 	
 	
 	@AfterClass
