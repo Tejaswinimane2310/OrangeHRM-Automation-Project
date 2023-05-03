@@ -32,16 +32,24 @@ public class OrangehrmEmployee {
 
 	@BeforeMethod()
 	public void login() throws InterruptedException {
+		
+		String url = "https://tejaswinimane-trials79.orangehrmlive.com/auth/login";
+		String userName = "Admin";
+		String password = "L0tLjv3@TJ";
+		String textUserName = "//input[@id=\"txtUsername\"]";
+		String textPassword = "//input[@id=\"txtPassword\"]";
+		String loginButton = "//*[@id=\"frmLogin\"]/div[4]/button";
+		String AssertText = "//*[@id=\"topbar\"]/ul[1]/li/div";
 
-		driver.get("https://tejaswinimane-trials79.orangehrmlive.com/auth/login");
+		driver.get(url);
 
-		driver.findElement(By.xpath("//input[@id=\"txtUsername\"]")).sendKeys("Admin");
+		driver.findElement(By.xpath(textUserName)).sendKeys(userName);
 
-		driver.findElement(By.xpath("//input[@id=\"txtPassword\"]")).sendKeys("L0tLjv3@TJ");
+		driver.findElement(By.xpath(textPassword)).sendKeys(password);
 
-		driver.findElement(By.xpath("//*[@id=\"frmLogin\"]/div[4]/button")).click();
+		driver.findElement(By.xpath(loginButton)).click();
 
-		Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"topbar\"]/ul[1]/li/div")).getText(),
+		Assert.assertEquals(driver.findElement(By.xpath(AssertText)).getText(),
 				"Employee Management");
 
 	}
@@ -61,6 +69,15 @@ public class OrangehrmEmployee {
 
 	}
 
+
+	public String[][] getEmployeeData() {
+		
+		
+		return null;
+		
+	}
+	
+	
 	@Test(priority = 2, enabled = true)
 	public void addEmployee() throws InterruptedException {
 
@@ -129,6 +146,8 @@ public class OrangehrmEmployee {
 		Assert.assertEquals(fullName, "Aditya Abhimanyu Mane");
 
 	}
+	
+	
 
 	@Test(priority = 3, enabled = true)
 	public void searchEmployee() throws InterruptedException {
