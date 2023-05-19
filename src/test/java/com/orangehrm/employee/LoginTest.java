@@ -10,7 +10,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -75,13 +75,13 @@ public class LoginTest {
 
 		if (loginPage.isSuccesfulLogin()) {
 
-			AssertJUnit.assertTrue(true);
+			Assert.assertTrue(true);
 			loginPage.clickLogout();
 
 		} else {
 			String url = "https://tejaswinimane-trials79.orangehrmlive.com/auth/login";
 			driver.get(url);
-			AssertJUnit.assertTrue(false);
+			Assert.assertTrue(false);
 
 		}
 	}

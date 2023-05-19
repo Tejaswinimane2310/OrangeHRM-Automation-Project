@@ -1,9 +1,5 @@
 package com.orangehrm.employee;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.AssertJUnit;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -88,7 +84,7 @@ public class OrangehrmEmployeeTest {
 		loginPage.setUserName("Admin");
 		loginPage.setPassword("L0tLjv3@TJ");
 		loginPage.clickLogin();		
-		AssertJUnit.assertTrue(loginPage.isSuccesfulLogin());
+		Assert.assertTrue(loginPage.isSuccesfulLogin());
 
 	}
 	
@@ -98,7 +94,7 @@ public class OrangehrmEmployeeTest {
 		try {
 			
 			orangehrmEmployeePage.addEmployee(emp);
-			AssertJUnit.assertTrue(orangehrmEmployeePage.isEmployeeAdded(emp.getFirstName(), emp.getLastName()));
+			Assert.assertTrue(orangehrmEmployeePage.isEmployeeAdded(emp.getFirstName(), emp.getLastName()));
 			orangehrmEmployeePage.goToHome();
 			
 		} catch (InterruptedException e) {
