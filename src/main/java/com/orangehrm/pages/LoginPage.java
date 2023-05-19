@@ -1,6 +1,7 @@
 package com.orangehrm.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 // Page Object Model (POM)
@@ -15,7 +16,9 @@ public class LoginPage {
 	By loginbutton = By.xpath("//*[@id=\"frmLogin\"]/div[4]/button");
 	By imgLogo = By.xpath("//img[@alt='company-branding']");
 	By successfulLogin = By.xpath("//*[@id=\"top-ribbon-menu\"]/div[1]/div/a/i");
-		
+	By clickLogout = By.xpath("//*[@id=\"navbar-logout\"]/a");
+	
+	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -34,13 +37,35 @@ public class LoginPage {
 		driver.findElement(loginbutton).click();
 	}
 	
-	public boolean isLogoPresent() {
-		return driver.findElement(imgLogo).isDisplayed();
+	public boolean isLogoPresent() { 
+		
+		boolean flag = false;
+		
+		try {
+			flag = driver.findElement(imgLogo).isDisplayed();;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+		
+		return flag;
 	}
 	
 	public boolean isSuccesfulLogin() {
-		return driver.findElement(successfulLogin).isDisplayed();
+		
+		boolean flag = false;
+		
+		try {
+			flag = !"https://tejaswinimane-trials79.orangehrmlive.com/securityAuthentication/retryLogin"
+					.equals(driver.getCurrentUrl());
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+		
+		return flag;
 	}
 	
-
+	public void clickLogout( ) {
+		
+		driver.findElement(clickLogout).click();
+	}
 }

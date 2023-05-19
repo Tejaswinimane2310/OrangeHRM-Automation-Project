@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import com.orangehrm.entity.Employee;
+
 public class OrangehrmEmployeePage {
 
 	WebDriver driver = null;
@@ -55,24 +57,24 @@ public class OrangehrmEmployeePage {
 	}
 
 
-	public void addEmployee() throws InterruptedException {
+	public void addEmployee(Employee emp) throws InterruptedException {
 
 		driver.findElement(empList).click();
 		
 		driver.findElement(addEmpButton).click();
 
-		driver.findElement(firstName).sendKeys("Aditya");
+		driver.findElement(firstName).sendKeys(emp.getFirstName());
 
-		driver.findElement(middleName).sendKeys("Abhimanyu");
+	//	driver.findElement(middleName).sendKeys("Abhimanyu");
 
-		driver.findElement(lastName).sendKeys("Mane");
+		driver.findElement(lastName).sendKeys(emp.getLastName());
 
 		driver.findElement(locationButton).click();
 
 		driver.findElement(locationName).click();
 
 		driver.findElement(saveButton).click();
-
+		
 		Thread.sleep(1000);
 		
 		driver.findElement(saveButton).click();
@@ -85,7 +87,7 @@ public class OrangehrmEmployeePage {
 
 		driver.findElement(genderDropdown).click();
 
-		driver.findElement(genderMale).click();
+		driver.findElement(By.xpath("//span[text()=\"" + emp.getGender() + "\"]")).click();
 
 		driver.findElement(nationCodeDropdown).click();
 
@@ -120,7 +122,15 @@ public class OrangehrmEmployeePage {
 		driver.findElement(saveEmpButton).click();
 
 	}
+	
+	public boolean isEmployeeAdded(String firstName, String lastName) {
+		return driver.findElement(By.xpath("//span[text()=\"" + firstName + "  " + lastName + "\"]")).isDisplayed();
+	}
 
+	public void goToHome() {
+		driver.findElement(By.xpath("//*[@id=\"top-ribbon-menu\"]/div[1]/div/a/i")).click();  
+	}
+	
 	public void searchEmployee() throws InterruptedException {
 
 		driver.findElement(empList).click();
