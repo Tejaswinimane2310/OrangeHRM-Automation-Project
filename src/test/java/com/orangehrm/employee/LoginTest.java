@@ -14,12 +14,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.orangehrm.pages.LoginPage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Listeners(com.orangehrm.listener.OrangeHrmListener.class)
 public class LoginTest {
 
 	WebDriver driver = null;
@@ -79,8 +81,7 @@ public class LoginTest {
 			loginPage.clickLogout();
 
 		} else {
-			String url = "https://tejaswinimane-trials79.orangehrmlive.com/auth/login";
-			driver.get(url);
+			loginPage.goToLoginPage();
 			Assert.assertTrue(false);
 
 		}
